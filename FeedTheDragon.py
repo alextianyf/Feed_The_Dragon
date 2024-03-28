@@ -14,9 +14,9 @@ pygame.display.set_caption("Feed The Dragon")
 running = True
 while running:
     #Loop through a list of event objects that have occured
-    for event in pygame.event.get():
-        print(event)
-        if event.type == pygame.QUIT:
+    for evnt in pygame.event.get():
+        print(evnt)
+        if evnt.type == pygame.QUIT:
             running = False
 
 pygame.quit()
