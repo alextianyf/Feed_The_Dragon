@@ -7,30 +7,31 @@ pygame.init()
 WINDOW_WIDTH = 600
 WINDOW_HEIGHT = 300
 display_surface = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
-pygame.display.set_caption("Blitting Images!")
+pygame.display.set_caption("Adding Sounds!")
 
-#Define colors
-GREEN = (0, 255, 0)
-DARKGREEN = (10, 50, 10)
-BLACK = (0, 0, 0)
+#Load sound effects
+sound_1 = pygame.mixer.Sound('sound_1.wav')
+sound_2 = pygame.mixer.Sound('sound_2.wav')
 
-#See all available system fonts
-fonts = pygame.font.get_fonts()
-for font in fonts:
-    print(font)
+#Play the sound effects
+sound_1.play()
+pygame.time.delay(2000)
+sound_2.play()
+pygame.time.delay(2000)
 
-#Define fonts
-system_font = pygame.font.SysFont('calibri', 64)
-custom_font = pygame.font.Font('AttackGraffiti.ttf', 32)
+#Change the volume of a sound effect
+sound_2.set_volume(.1)
+sound_2.play()
 
-#Define text
-system_text = system_font.render("Dragons Rule!", True, GREEN, DARKGREEN)
-system_text_rect = system_text.get_rect()
-system_text_rect.center = (WINDOW_WIDTH//2, WINDOW_HEIGHT//2)
+#Load background music
+pygame.mixer.music.load('music.wav')
 
-custom_text = custom_font.render("Move the dragon soon!", True, GREEN)
-custom_text_rect = custom_text.get_rect()
-custom_text_rect.center = (WINDOW_WIDTH//2, WINDOW_HEIGHT//2 + 100)
+#Play and stop the music
+pygame.mixer.music.play(-1, 0.0)
+pygame.time.delay(1000)
+sound_2.play()
+pygame.time.delay(5000)
+pygame.mixer.music.stop()
 
 #The main game loop
 running = True
@@ -38,13 +39,6 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
-
-    #Blit (copy) the text surfaces to the display surface
-    display_surface.blit(system_text, system_text_rect)
-    display_surface.blit(custom_text, custom_text_rect)
-
-    #Update the display
-    pygame.display.update()
 
 #End the game
 pygame.quit()
