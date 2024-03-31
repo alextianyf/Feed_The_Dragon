@@ -1,46 +1,46 @@
 import pygame
 
-#Initialize pygame
+#Initiailze Pygame
 pygame.init()
 
-#Create our display surface
+#Create a display surface
 WINDOW_WIDTH = 600
 WINDOW_HEIGHT = 300
 display_surface = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
-pygame.display.set_caption("Discrete Movement!")
+pygame.display.set_caption("Mouse Movement!")
 
-#Set game values
-VELOCITY = 30
-
-#Load in images
+#Load images
 dragon_image = pygame.image.load("dragon_right.png")
 dragon_rect = dragon_image.get_rect()
-dragon_rect.centerx = WINDOW_WIDTH//2
-dragon_rect.bottom = WINDOW_HEIGHT
+dragon_rect.topleft = (25, 25)
 
 #The main game loop
 running = True
 while running:
     for event in pygame.event.get():
-        print(event)
         if event.type == pygame.QUIT:
             running = False
 
-        #Check for discrete movement
-        if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_LEFT:
-                dragon_rect.x -= VELOCITY
-            if event.key == pygame.K_RIGHT:
-                dragon_rect.x += VELOCITY
-            if event.key == pygame.K_UP:
-                dragon_rect.y -= VELOCITY
-            if event.key == pygame.K_DOWN:
-                dragon_rect.y += VELOCITY
+        #Move based on mouse clicks
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            print(event)
+            mouse_x = event.pos[0]
+            mouse_y = event.pos[1]
+            dragon_rect.centerx = mouse_x
+            dragon_rect.centery = mouse_y
 
-    #Fill the display surface to cover old images
+        #Drag the object when the mouse button is clicked
+        if event.type == pygame.MOUSEMOTION and event.buttons[0] == 1:
+            print(event)
+            mouse_x = event.pos[0]
+            mouse_y = event.pos[1]
+            dragon_rect.centerx = mouse_x
+            dragon_rect.centery = mouse_y
+
+    #Fill the display
     display_surface.fill((0, 0, 0))
 
-    #Blit (copy) assets to the screen
+    #Blit assets
     display_surface.blit(dragon_image, dragon_rect)
 
     #Update the display

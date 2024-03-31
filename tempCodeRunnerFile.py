@@ -1,2 +1,2 @@
-    # display_surface.blit(dragon_left_image, dragon_left_rect)
-    # display_surface.blit(dragon_right_image, dragon_right_rect)
+    # #Fill the display surface to cover old images
+    # display_surface.fill((0, 0, 0))
