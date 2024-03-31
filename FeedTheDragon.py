@@ -60,6 +60,8 @@ coin_sound = pygame.mixer.Sound("coin_sound.wav")
 miss_sound = pygame.mixer.Sound("miss_sound.wav")
 miss_sound.set_volume(.1)
 pygame.mixer.music.load("ftd_background_music.wav")
+#The main game loop
+pygame.mixer.music.play(-1, 0.0)
 
 #Set images
 player_image = pygame.image.load("dragon_right.png")
@@ -73,8 +75,6 @@ coin_rect.x = WINDOW_WIDTH + BUFFER_DISTANCE
 coin_rect.y = random.randint(64, WINDOW_HEIGHT - 32)
 
 
-#The main game loop
-pygame.mixer.music.play(-1, 0.0)
 running = True
 while running:
     #Check to see if user wants to quit
